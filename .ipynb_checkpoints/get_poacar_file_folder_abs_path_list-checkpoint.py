@@ -35,8 +35,6 @@ poscar_folder_path_list_filter = list(map(poscar_folder_filter, p_ssss_list))
 # apply filter to p_ssss_list
 poscar_folder_path_list = np.array(p_ssss_list)[poscar_folder_path_list_filter]
 print(f'len(poscar_folder_path_list): {len(poscar_folder_path_list)}')
-# save as .npy file
-np.save('poscar_folder_abs_path_list.npy', poscar_folder_path_list)
 
 
 # 並列化(POSCARファイルのあるディレクトリの，ファイルorフォルダ一覧を取得)
@@ -64,3 +62,10 @@ poscar_file_path_list = np.array(poscar_mixed_path_list)[poscar_file_path_list_f
 print(f"len(poscar_file_path_list): {len(poscar_file_path_list)}")
 # save poscar_file_path_list as .npy
 np.save('poscar_abs_path_list.npy', poscar_file_path_list)
+
+
+# make poscar_file_existed_folder_abs_path_list
+poscar_folder_path_list = [Path(str(p)[:-7]) for p in poscar_file_path_list]
+print(f'len(poscar_folder_path_list): {len(poscar_folder_path_list)}')
+# save as .npy file
+np.save('poscar_folder_abs_path_list.npy', poscar_folder_path_list)
